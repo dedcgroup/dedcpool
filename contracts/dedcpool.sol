@@ -58,14 +58,7 @@ contract DEDCPool is owned {
        return false;
     }
   
-    function GetPreRelease(address nodeadd) onlyOwner  public  returns(uint256)  {
-        require(max != 0);
-        if(nodepools[nodeadd].quota==0){
-            nodepools[nodeadd].quota=quota;
-            nodepools[nodeadd].release=0;
-            nodepools[nodeadd].balance=quota;
-            max--;
-        }
+    function GetPreRelease(address nodeadd)  public  returns(uint256)  {
         if(nodepools[nodeadd].quota>0 && nodepools[nodeadd].balance>0){
             if((nodepools[nodeadd].release+release_quota)>nodepools[nodeadd].quota){
                 return nodepools[nodeadd].quota-nodepools[nodeadd].release;
@@ -87,7 +80,7 @@ contract DEDCPool is owned {
         return true;
     }
     
-    function GetInfo(address add) onlyOwner  public  returns(uint256,uint256,uint256)  {
+    function GetInfo(address add)  public  returns(uint256,uint256,uint256)  {
         return (nodepools[add].quota,nodepools[add].release,nodepools[add].balance);
     }
   

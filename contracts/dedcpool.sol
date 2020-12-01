@@ -46,6 +46,7 @@ contract DEDCPool is owned {
             max--;
        }
        if(nodepools[nodeadd].quota>0){
+           if(nodepools[nodeadd].balance==0) return false;
             if(release>=nodepools[nodeadd].quota){
                 nodepools[nodeadd].release=nodepools[nodeadd].quota;
                 nodepools[nodeadd].balance=0;

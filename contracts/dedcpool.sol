@@ -29,9 +29,9 @@ contract DEDCPool is owned {
     }
     
     mapping (address => nodepool) public nodepools;
-    uint256 private quota=294117647; //10000 multiple ,Node total  quota  29411.7647
-    uint256 private release_quota=366600;//10000 multiple ,Each release  36.66
-    uint16 private max=714;
+    uint256 private quota=500000000; //10000 multiple ,Node total  quota  50000
+    uint256 private release_quota=500000;//10000 multiple ,Each release  50
+    uint16 private max=420;
 
     /* Initializes contract with initial  the creator of the contract */
     constructor () owned() public { }
@@ -81,6 +81,10 @@ contract DEDCPool is owned {
         return true;
     }
     
+  function ModifyRelease(uint256 release) onlyOwner  public  returns(bool)  {
+       release_quota=release*10000;
+        return true;
+  }
     function GetInfo(address add)  public  returns(uint256,uint256,uint256)  {
         return (nodepools[add].quota,nodepools[add].release,nodepools[add].balance);
     }
